@@ -3,7 +3,9 @@
 <!--
 This is an HTML document. It contains information about how elements in the website
 are arranged. In other words, it describes the layout of a website.
+
 I can't wait to see the resumes you put together!
+
 Cameron Pittman, Udacity Course Developer
 -->
 
@@ -28,14 +30,12 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
   <!--
   Uncomment the <script> tag below when you're ready to add an interactive Google Map to your resume!
   -->
-<!-- <script src="http://maps.googleapis.com/maps/api/js?libraries=places"></script> -->
+ <script src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
 
   <meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
 <body>
   <div id="main">
-    Hello world!   <!-- You'll be deleting this line in the course -->
-
     <!--
     Everything from here to the <script> tag below is the skeleton of your
     website. Your code will add information to each of the sections of the
@@ -61,6 +61,7 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
     <div id="lets-connect" class="dark-gray">
       <h2 class="orange center-text">Let's Connect</h2>
         <ul id="footerContacts" class="flex-box">
+
       </ul>
     </div>
   </div>
@@ -75,6 +76,7 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
   jQuery is a common JavaScript library for reading and making changes to the
   Document Object Model (DOM). The DOM is a tree that contains information
   about what is actually visible on a website.
+
   While HTML is a static document, the browser converts HTML to the
   DOM and the DOM can change. In fact, JavaScript's power comes from
   its ability to manipulate the DOM, which is essentially a JavaScript
@@ -103,48 +105,70 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
   of the resume, then that part of the resume does not show up. More on this in the
   course.
   -->
+<script>
 
 
-  <script>
-    // Notice how all of a sudden there's JavaScript inside this HTML
+
+
+    $(document).click(
+      function(loc) {
+      var x= loc.pageX;
+      var y= loc.pageY;
+
+      logClicks(x,y);
+    } );
+
+    //Function to change the name
+
+   function inName(name){
+      name= name.toUpperCase();
+      name=name.replace(name.substring(1,name.indexOf(' ')),name.substring(1,name.indexOf(' ')).toLowerCase());
+      return name;
+   }
+
+
+    //Call to the functions
+    displayPresentation();
+    displayWork();
+    //project.display();
+    education.display();
+    bio.displayContacts();
+
+    //Function to display google maps
+    $("#mapDiv").append(googleMap);
+
+
+        // Notice how all of a sudden there's JavaScript inside this HTML
     // document? You can write JavaScript between <script> tags. At the end of your
     // JavaScript, don't forget the closing script tag with the slash (/).
-
-
     // Also, this is a JavaScript style comment. You can comment in JavaScript with:
-
     //   two slashes for all following characters on a single line, or
-
     /*
         an opening and closing set of slash asterisks for block comments.
     */
-
-
     if(document.getElementsByClassName('flex-item').length === 0) {
-      document.getElementById('topContacts').style.backgroundColor="black";
+      document.getElementById('topContacts').style.display="none";
     }
     if(document.getElementsByTagName('h1').length === 0) {
-      document.getElementById('header').style.backgroundColor="black";
+      document.getElementById('header').style.display="none";
     }
     if(document.getElementsByClassName('work-entry').length === 0) {
-      document.getElementById('workExperience').style.backgroundColor="black";
+      document.getElementById('workExperience').style.display="none";
     }
     if(document.getElementsByClassName('project-entry').length === 0) {
-      document.getElementById('projects').style.backgroundColor="black";
+      document.getElementById('projects').style.display="none";
     }
     if(document.getElementsByClassName('education-entry').length === 0) {
-      document.getElementById('education').style.backgroundColor="black";
+      document.getElementById('education').style.display="none";
     }
     if(document.getElementsByClassName('flex-item').length === 0) {
-      document.getElementById('lets-connect').style.backgroundColor="black";
+      document.getElementById('lets-connect').style.display="none";
     }
     if(document.getElementById('map') === null) {
-      document.getElementById('mapDiv').style.backgroundColor="black";
+      document.getElementById('mapDiv').style.display="none";
     }
 
-    //Call to the function
-    display();
-
   </script>
+
 </body>
 </html>
